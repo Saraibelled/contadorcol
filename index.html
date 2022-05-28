@@ -8,8 +8,22 @@
 <style>
 .contenedorcolillas {
 	max-width: 624px;
-	max-height: 600px;
 	margin: auto;
+}
+.content {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: #ffffff;
+  max-height: 300px;
+}
+
+.value {
+  font-family: Guardian TextSans Medium, ABC Display;
+  font-size: 32px;
+  display: block;
+  font-weight: bold;
+  color: #333333;
 }
 
 .bar {
@@ -34,7 +48,7 @@
 }
 .col {	
 	font-family: Guardian TextSans Regular;
-	font-size: 20px;
+	font-size: 17px;
 	text-align: center;
 	color: #333333;
 	margin-top: auto;
@@ -49,39 +63,38 @@
   }
 }
 
-@property --num {
-  syntax: "<integer>";
-  initial-value: 8220000;
-  inherits: false;
-}
-
-.contadorcolillas {
-  animation: counter 60s;
-  counter-reset: num var(--num);
-  font-family: Guardian TextSans Medium;
-  font-size: 52px;
-  text-align: center;
-  color: #333333;
-
-}
-.contadorcolillas::after {
-  content: counter(num);
-}
-
-@keyframes counter {
-  from {
-    --num: 0;
-  }
-  to {
-    --num: 8220000;
-  }
-}
 
 </style>
-<body>	  
 <div class="contenedorcolillas">
 
-<div class="contadorcolillas"></div>
+
+<div class="content">
+  <div class="value" akhi="8220000">0</div>
+</div>
+<script>
+const counters = document.querySelectorAll('.value');
+const speed = 11000;
+
+counters.forEach( counter => {
+   const animate = () => {
+      const value = +counter.getAttribute('akhi');
+      const data = +counter.innerText;
+     
+      const time = value / speed;
+     if(data < value) {
+          counter.innerText = Math.ceil(data + time);
+          setTimeout(animate, 1);
+        }else{
+          counter.innerText = value;
+        }
+     
+   }
+   
+   animate();
+});
+
+</script>
+
 <p class="col">colillas en el suelo</p>
 
 <div class="bar">
@@ -89,5 +102,8 @@
 </div>
 <p class="sec">60 segundos</p>
 </div>
+
+
+
 </body>
 </html>
