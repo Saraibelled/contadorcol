@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Esta es una prueba para un contador</title>
+  </head>
+  <body>
+<style>
+.contenedorcolillas {
+	max-width: 624px;
+	max-height: 600px;
+	margin: auto;
+}
+
+.bar {
+  height: 50px;
+  width: 100%;
+  background-color: #ffffff;
+  border: 1px solid #c4c4c4;
+  border-radius: 4px;
+  }
+
+.in {
+    animation: fill 60s linear infinite;
+    height: 100%;
+    background-color: #FF9900;
+  }
+.sec {
+	font-family: Guardian TextSans Regular;
+	font-size: 13px;
+	text-align: right;
+	color: #c4c4c4;
+	margin-top: 2px;
+}
+.col {	
+	font-family: Guardian TextSans Regular;
+	font-size: 20px;
+	text-align: center;
+	color: #333333;
+	margin-top: auto;
+}
+
+@keyframes fill {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@property --num {
+  syntax: "<integer>";
+  initial-value: 8220000;
+  inherits: false;
+}
+
+.contadorcolillas {
+  animation: counter 60s;
+  counter-reset: num var(--num);
+  font-family: Guardian TextSans Medium;
+  font-size: 52px;
+  text-align: center;
+  color: #333333;
+
+}
+.contadorcolillas::after {
+  content: counter(num);
+}
+
+@keyframes counter {
+  from {
+    --num: 0;
+  }
+  to {
+    --num: 8220000;
+  }
+}
+
+</style>
+<div class="contenedorcolillas">
+
+<div class="contadorcolillas"></div>
+<p class="col">colillas en el suelo</p>
+
+<div class="bar">
+ <div class="in"></div>
+</div>
+<p class="sec">60 segundos</p>
+</div>
+</body>
+</html>
